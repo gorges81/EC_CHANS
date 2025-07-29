@@ -1,0 +1,100 @@
+<?php
+// /app/integrador/inv_shopify_ppb/main_inv_shopify_ppb.php
+
+require_once __DIR__ . '/../../../includes/bootstrap.php';
+require_once PROJECT_ROOT . '/db/CRUDImportaciones.php';
+// --- LÍNEA CLAVE: Asegúrate de que el nombre del archivo sea EXACTAMENTE este ---
+require_once PROJECT_ROOT . '/db/CRUDInv_shopify_ppb.php';
+include_once PROJECT_ROOT . '/includes/header.php';
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: /ec_chans/index.php");
+    exit();
+}
+
+$correlativos = obtenerCorrelativosConArchivo($link, 'url_inv_shopify_ppb');
+// --- LÍNEA 15 (DEL ERROR): Llamada a la función con el nombre verificado ---
+$ultimaIntegracion = obtenerDatosUltimaIntegracionInvShopifyPPB($link);
+?>
+<link rel="stylesheet" href="/ec_chans/css/style_inv_shopify_ppb.css">
+
+<div class="container-fluid dashboard-section p-4 my-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/ec_chans/dashboard.php">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/ec_chans/app/integrador/main_integrador.php">Integrador</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inventario Shopify PPB</li>
+        </ol>
+    </nav>
+    
+    <h2 class="text-dark-blue mb-4">Integrador / Inventario Shopify PPB</h2>
+    <p class="lead">Seleccione una importación para migrar los datos del archivo de inventario de Shopify PPB.</p>
+
+    <div class="card p-4 shadow-sm">
+        <div class="row align-items-end">
+            <div class="col-md-8">
+                <label for="correlativoSelect" class="form-label"><strong>Seleccionar Lote de Importación:</strong></label>
+                <select id="correlativoSelect" class="form-select">
+                    <option value="">-- Elija una importación --</option>
+                    <?php foreach ($correlativos as $imp): ?>
+                        <option value="<?php echo htmlspecialchars($imp['id']); ?>">
+                            <?php echo htmlspecialchars($imp['fecha_correlativa_display']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button id="btnIntegrarInvShopifyPPB" class="btn btn-primary w-100" disabled>
+                    <i class="fas fa-cogs me-2"></i>Iniciar Integración
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <?php if ($ultimaIntegracion): ?>
+    <?php
+        $correlativo_usado = $ultimaIntegracion['import_correlativo'];
+        // --- LLAMADA A LA FUNCIÓN CON NOMBRE VERIFICADO ---
+        $num_registros = contarRegistrosInvShopifyPPBPorCorrelativo($correlativo_usado, $link);
+    ?>
+    <div class="card mt-4 shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Última Integración Realizada (Inv Shopify PPB)</h5>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div>
+                    <span class="me-3"><strong>Fecha:</strong> <span class="fw-bold"><?php echo date("d/m/Y H:i", strtotime($ultimaIntegracion['import_fecha'])); ?></span></span>
+                    <span class="me-3"><strong>Correlativo Usado:</strong> <span class="fw-bold"><?php echo htmlspecialchars($correlativo_usado); ?></span></span>
+                    <span class="me-3"><strong>Nro. Registros:</strong> <span class="fw-bold"><?php echo $num_registros; ?></span></span>
+                </div>
+                <div class="d-flex gap-2 mt-2 mt-md-0">
+                    <button id="btnVerDatosInvShopifyPPB" class="btn btn-info" data-correlativo="<?php echo htmlspecialchars($correlativo_usado); ?>">
+                        <i class="fas fa-eye me-2"></i>Ver Datos
+                    </button>
+                    <button id="btnVaciarInvShopifyPPB" class="btn btn-danger">
+                        <i class="fas fa-trash-alt me-2"></i>Eliminar Todo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+</div>
+
+<div class="modal fade" id="datosModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Datos de la Integración</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="gridContainer" class="table-responsive"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include_once PROJECT_ROOT . '/includes/footer.php'; ?>
+<script src="/ec_chans/js/script_inv_shopify_ppb.js"></script>
