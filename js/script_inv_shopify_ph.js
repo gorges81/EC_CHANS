@@ -1,0 +1,139 @@
+// /js/script_inv_shopify_ph.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    const correlativoSelect = document.getElementById('correlativoSelect');
+    const btnIntegrar = document.getElementById('btnIntegrarInvShopifyPH');
+    const btnVaciar = document.getElementById('btnVaciarInvShopifyPH');
+    const btnVerDatos = document.getElementById('btnVerDatosInvShopifyPH');
+    const datosModalElement = document.getElementById('datosModal');
+    const datosModal = datosModalElement ? new bootstrap.Modal(datosModalElement) : null;
+
+    if (correlativoSelect && btnIntegrar) {
+        correlativoSelect.addEventListener('change', () => {
+            btnIntegrar.disabled = !correlativoSelect.value;
+        });
+    }
+
+    if (btnIntegrar) {
+        btnIntegrar.addEventListener('click', function() {
+            const importacionId = correlativoSelect.value;
+            const selectedText = correlativoSelect.options[correlativoSelect.selectedIndex].text;
+            
+            Swal.fire({
+                title: '¿Confirmar Integración?',
+                html: `Se borrarán los datos actuales de 'Inventario Shopify PH' y se procesarán los del lote <b>${selectedText}</b>.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, integrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Procesando...',
+                        html: 'Migrando datos de Inventario Shopify PH. Por favor espere.',
+                        allowOutsideClick: false,
+                        didOpen: () => { Swal.showLoading(); }
+                    });
+
+                    $.ajax({
+                        url: '/ec_chans/app/integrador/inv_shopify_ph/procesar_inv_shopify_ph.php',
+                        type: 'POST',
+                        data: { importacion_id: importacionId },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire('¡Éxito!', response.message, 'success').then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire('Error', response.message, 'error');
+                            }
+                        },
+                        error: function(xhr) {
+                            const errorMsg = xhr.responseJSON ? xhr.responseJSON.message : 'No se pudo conectar con el servidor.';
+                            Swal.fire('Error de Comunicación', errorMsg, 'error');
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    if (btnVaciar) {
+        btnVaciar.addEventListener('click', function() {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡Todos los registros de Inventario Shopify PH serán eliminados permanentemente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar todo',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('/ec_chans/app/integrador/inv_shopify_ph/vaciar_inv_shopify_ph.php', function(response) {
+                        if(response.success) {
+                            Swal.fire('Eliminado', response.message, 'success').then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire('Error', response.message, 'error');
+                        }
+                    }, 'json');
+                }
+            });
+        });
+    }
+
+    if (btnVerDatos) {
+        btnVerDatos.addEventListener('click', function() {
+            const correlativo = this.dataset.correlativo;
+            const gridContainer = document.getElementById('gridContainer');
+            
+            gridContainer.innerHTML = '<div class="text-center p-5"><i class="fas fa-spinner fa-spin fa-3x"></i><p>Cargando datos...</p></div>';
+            datosModal.show();
+
+            $.post('/ec_chans/app/integrador/inv_shopify_ph/obtener_datos_grid_inv_shopify_ph.php', { correlativo: correlativo }, 'json')
+                .done(function(response) {
+                    if (response.success && response.data.length > 0) {
+                        window.dataTableData = response.data;
+                        window.dataTableHeaders = response.headers;
+                    } else {
+                        gridContainer.innerHTML = '<div class="alert alert-warning">No se encontraron datos para mostrar.</div>';
+                    }
+                })
+                .fail(function() {
+                    gridContainer.innerHTML = '<div class="alert alert-danger">Error al cargar los datos. Intente de nuevo.</div>';
+                });
+        });
+    }
+
+    if (datosModalElement) {
+        datosModalElement.addEventListener('shown.bs.modal', function () {
+            if (window.dataTableData && window.dataTableHeaders) {
+                const gridContainer = document.getElementById('gridContainer');
+                gridContainer.innerHTML = '<table id="dynamicDataTable" class="table table-striped table-bordered w-100"></table>';
+                
+                $('#dynamicDataTable').DataTable({
+                    data: window.dataTableData,
+                    columns: Object.keys(window.dataTableHeaders).map(key => ({ data: key, title: window.dataTableHeaders[key] })),
+                    language: { url: "https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-ES.json" },
+                    responsive: false,
+                    scrollX: true,
+                    scrollY: "50vh",
+                    scrollCollapse: true,
+                    paging: true
+                });
+            }
+        });
+
+        datosModalElement.addEventListener('hidden.bs.modal', function () {
+            if ($.fn.DataTable.isDataTable('#dynamicDataTable')) {
+                $('#dynamicDataTable').DataTable().destroy();
+            }
+            document.getElementById('gridContainer').innerHTML = '';
+            window.dataTableData = null;
+            window.dataTableHeaders = null;
+        });
+    }
+});
