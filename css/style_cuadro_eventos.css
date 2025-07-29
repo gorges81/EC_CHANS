@@ -1,0 +1,31 @@
+/* /ec_chans/css/style_cuadro_eventos.css */
+/* Este archivo es para aplicar estilos específicos a la consola de eventos. */
+
+/* [OK] Eventos de éxito en amarillo brillante */
+.event-type-Importación,
+.event-type-Carga_Exitosa,
+.event-type-Importación_Creada {
+    color: var(--bright-yellow) !important;
+}
+
+/* [WARN] Eventos de modificación en naranja */
+.event-type-Importación_Actualizada {
+    color: var(--action-orange) !important;
+}
+
+/* [CRITICAL] Eventos de eliminación en rojo */
+.event-type-Eliminación {
+    color: var(--alert-red) !important;
+}
+
+/* [ERROR] Eventos de error en rojo intenso */
+.event-type-Error {
+    color: var(--strong-red) !important;
+}
+
+/* [INFO] Eventos del sistema en azul-gris */
+.event-type-Sistema,
+.event-type-Navegación,
+.event-type-Auditoría {
+    color: var(--grey-blue) !important;
+}

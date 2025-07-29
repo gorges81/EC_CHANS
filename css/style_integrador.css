@@ -1,0 +1,12 @@
+/* /css/style_integrador.css */
+
+/* Estilo para la tabla dentro del popup que limita el texto y mantiene la altura de fila */
+/* Se aplica a ambas tablas, Category y Active, por su ID */
+#dynamicDataTable td,
+#dynamicDataTableActive td {
+    max-width: 250px;       /* Ancho máximo de la celda, puedes ajustar este valor */
+    white-space: nowrap;    /* CRÍTICO: Evita que el texto salte de línea, manteniendo una altura de fila uniforme */
+    overflow: hidden;       /* Oculta el texto que se desborda */
+    text-overflow: ellipsis;/* Añade los "..." al final del texto cortado */
+    vertical-align: middle; /* Asegura la alineación vertical */
+}

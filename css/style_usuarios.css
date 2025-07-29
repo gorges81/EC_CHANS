@@ -1,0 +1,23 @@
+/* css/style_usuarios.css */
+
+/*
+* NOTA: La mayoría de los estilos de botones y tablas
+* ahora son controlados por el style.css global.
+* Las reglas aquí son ajustes específicos del módulo de usuarios.
+*/
+
+/* La cabecera de la tabla ya se estiliza con la clase .table thead en style.css */
+/* No es necesario re-declarar aquí, a menos que se quiera un estilo diferente */
+
+/* Estilos para el formulario */
+#formUsuario .form-label.required:after {
+    content: " *";
+    color: var(--strong-red); /* Usando el rojo fuerte de la paleta para requerido */
+}
+
+/* Media query para hacer la tabla responsive */
+@media (max-width: 768px) {
+    .table-usuarios-container {
+        overflow-x: auto;
+    }
+}

@@ -1,0 +1,48 @@
+/* /ec_chans/css/style_analisis.css */
+
+/* Estilos específicos para las tarjetas de resumen en el módulo de análisis */
+.analytics-card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    overflow: hidden;
+    background-color: var(--light-grey-blue); /* Fondo de la tarjeta */
+    color: var(--very-dark-grey); /* Color del texto general */
+}
+
+.analytics-card .card-title {
+    background-color: var(--dark-blue); /* Color de la barra de título */
+    color: white;
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.analytics-card .card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.analytics-card .card-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--bright-yellow); /* Color llamativo para el valor */
+    margin-bottom: 5px;
+}
+
+.analytics-card .card-label {
+    font-size: 0.9em;
+    color: var(--grey-blue);
+}
+
+/* Estilos para los contenedores de gráficos */
+.card canvas {
+    max-height: 350px; /* Altura máxima para los gráficos */
+    width: 100% !important; /* Asegurar que ocupen todo el ancho disponible */
+}
+
+/* Ajustes para el formulario de filtros */
+#formFiltrosAnalisis .form-label {
+    font-weight: bold;
+    color: var(--dark-blue);
+}

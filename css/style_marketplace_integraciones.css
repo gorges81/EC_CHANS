@@ -1,0 +1,4 @@
+/* /css/style_marketplace_integraciones.css */
+#integracionesGrid tbody tr {
+    cursor: pointer;
+}

@@ -1,0 +1,137 @@
+/* css/fonts.css */
+/* Este archivo debe estar en ec_chans/css/ */
+
+/* Geomanist Black */
+@font-face {
+    font-family: 'Geomanist Black';
+    src: url('../fonts/Geomanist-Black#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Black';
+    src: url('../fonts/Geomanist-BlackItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* Geomanist Bold */
+@font-face {
+    font-family: 'Geomanist Bold';
+    src: url('../fonts/Geomanist-Bold#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Bold';
+    src: url('../fonts/Geomanist-BoldItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* Geomanist Book */
+@font-face {
+    font-family: 'Geomanist Book';
+    src: url('../fonts/Geomanist-Book#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Book';
+    src: url('../fonts/Geomanist-BookItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Geomanist ExtraLight */
+@font-face {
+    font-family: 'Geomanist ExtraLight';
+    src: url('../fonts/Geomanist-ExtraLight#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist ExtraLight';
+    src: url('../fonts/Geomanist-ExtraLightItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 200;
+    font-style: italic;
+}
+
+/* Geomanist Light */
+@font-face {
+    font-family: 'Geomanist Light';
+    src: url('../fonts/Geomanist-Light#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Light';
+    src: url('../fonts/Geomanist-LightItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Geomanist Medium */
+@font-face {
+    font-family: 'Geomanist Medium';
+    src: url('../fonts/Geomanist-Medium#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Medium';
+    src: url('../fonts/Geomanist-MediumItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Geomanist Regular */
+@font-face {
+    font-family: 'Geomanist Regular';
+    src: url('../fonts/Geomanist-Regular#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 400; /* Es común usar 400 para 'Regular' */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Regular';
+    src: url('../fonts/Geomanist-RegularItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Geomanist Thin */
+@font-face {
+    font-family: 'Geomanist Thin';
+    src: url('../fonts/Geomanist-Thin#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Thin';
+    src: url('../fonts/Geomanist-ThinItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 100;
+    font-style: italic;
+}
+
+/* Geomanist Ultra */
+@font-face {
+    font-family: 'Geomanist Ultra';
+    src: url('../fonts/Geomanist-Ultra#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geomanist Ultra';
+    src: url('../fonts/Geomanist-UltraItalic#2.otf') format('opentype'); /* RUTA ACTUALIZADA */
+    font-weight: 800;
+    font-style: italic;
+}

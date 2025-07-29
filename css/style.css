@@ -1,0 +1,337 @@
+/* ================================================
+   Hoja de Estilos Principal para EC_CHANS
+   Versión Final
+================================================ */
+
+/* ================================================
+Paleta de Colores Oficial
+================================================ */
+:root {
+    --dark-blue: #00263A;
+    --very-dark-grey: #101820;
+    --grey-blue: #647696;
+    --light-grey-blue: #D1DDE6;
+    --light-yellow: #F8E59A;
+    --bright-yellow: #FEDD00;
+    --alert-red: #FF585D;
+    --action-orange: #FF6900;
+    --strong-red: #EE3831;
+}
+
+/* ================================================
+Estilos Generales del Body y Wrapper
+================================================ */
+body {
+    font-family: 'Geomanist', sans-serif;
+    background-color: #f0f2f5; /* Un gris muy claro para el fondo general */
+    color: var(--very-dark-grey);
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+main {
+    padding: 20px;
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+    background-color: #ffffff; /* FONDO DEL DASHBOARD EN BLANCO */
+}
+
+/* ================================================
+Sidebar (Menú Lateral Izquierdo)
+================================================ */
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: var(--bright-yellow);
+    color: var(--very-dark-grey);
+    transition: all 0.3s;
+    border-right: 1px solid var(--light-yellow);
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    background-color: var(--bright-yellow);
+    color: var(--very-dark-grey);
+    text-align: center;
+}
+
+#sidebar-wrapper .list-group-item {
+    background-color: var(--bright-yellow);
+    color: var(--very-dark-grey);
+    border: none;
+    padding: 15px 20px;
+    font-weight: bold;
+}
+
+#sidebar-wrapper .list-group-item:hover,
+#sidebar-wrapper .list-group-item.active {
+    background-color: var(--dark-blue);
+    color: var(--bright-yellow);
+    border-left: 5px solid var(--dark-blue);
+    padding-left: 15px;
+}
+
+#sidebar-wrapper .list-group-item i {
+    margin-right: 10px;
+}
+
+/* ================================================
+Navbar (Barra de Navegación Superior)
+================================================ */
+.navbar {
+    background-color: var(--bright-yellow);
+    border-bottom: 2px solid var(--light-yellow);
+}
+
+.navbar-brand-text {
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--very-dark-grey);
+}
+
+/* ================================================
+Tarjetas (Cards) del Dashboard
+================================================ */
+.card {
+    border: none;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 15px 20px;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: var(--light-grey-blue);
+}
+
+.card-text {
+    color: var(--very-dark-grey);
+    min-height: 40px;
+}
+
+.card-body a.btn {
+    background-color: var(--bright-yellow);
+    color: var(--very-dark-grey);
+    border: 2px solid var(--bright-yellow);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.card-body a.btn:hover {
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    color: var(--bright-yellow);
+}
+
+/* ================================================
+Botones, Alertas, Tablas y Formularios Genéricos
+================================================ */
+.btn-primary { background-color: var(--dark-blue); border-color: var(--dark-blue); color: white; }
+.btn-primary:hover { background-color: var(--very-dark-grey); border-color: var(--very-dark-grey); }
+.btn-danger { background-color: var(--strong-red); border-color: var(--strong-red); color: white; }
+.btn-success { background-color: #198754; border-color: #198754; color: white; } /* Verde para éxito */
+.btn-secondary { background-color: #6c757d; border-color: #6c757d; color: white; } /* Gris para acciones secundarias */
+.btn-warning { background-color: var(--action-orange); border-color: var(--action-orange); color: white;}
+.alert-danger { background-color: var(--alert-red); color: #fff; }
+.table { background-color: #fff; }
+.table thead { background-color: var(--dark-blue); color: #fff; }
+.form-control:focus { border-color: var(--bright-yellow); box-shadow: 0 0 0 0.25rem rgba(254, 221, 0, 0.25); }
+.form-label { font-weight: bold; color: var(--dark-blue); }
+
+/* Botón de búsqueda específico para Módulo de Eventos */
+.btn-search-yellow {
+    background-color: var(--action-orange);
+    border-color: var(--action-orange);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-search-yellow:hover {
+    opacity: 0.85;
+}
+
+/* Estilo para la clase personalizada btn-dark-blue, usada en importaciones */
+.btn-dark-blue {
+    background-color: var(--dark-blue);
+    color: white;
+    border-color: var(--dark-blue);
+}
+
+.btn-dark-blue:hover {
+    background-color: var(--very-dark-grey);
+    border-color: var(--very-dark-grey);
+}
+
+/* Utilidad para que los botones de acción tengan un ancho mínimo uniforme */
+.btn-uniform-width {
+    min-width: 210px;
+    text-align: center;
+}
+
+
+/* ======================================================================
+   == ESTILOS MÓDULO DE EVENTOS (CON ASIGNACIÓN DE COLOR FINAL) ==
+   ====================================================================== */
+
+.event-console-container {
+    background-color: var(--very-dark-grey);
+    color: var(--light-grey-blue);
+    font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
+    font-size: 0.95em;
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid var(--dark-blue);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.event-console-item {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--dark-blue);
+    line-height: 1.6;
+}
+
+.event-console-item:last-child { 
+    border-bottom: none; 
+}
+
+.event-timestamp { 
+    color: var(--grey-blue) !important; 
+    font-weight: bold; 
+    margin-right: 15px; 
+}
+
+.event-title { 
+    color: var(--light-grey-blue) !important;
+    font-weight: bold; 
+}
+
+.event-description { 
+    color: var(--grey-blue) !important; 
+    padding-left: 20px; 
+}
+
+.event-type { 
+    font-weight: bold; 
+    display: inline-block; 
+    width: 150px; 
+}
+
+/* --- Colores aplicados SOLAMENTE a las letras del TIPO de evento --- */
+
+/* Importacion -> #FEDD00 */
+.event-type-Importación,
+.event-type-Importación_Creada {
+    color: var(--bright-yellow) !important;
+}
+
+/* Carga Exitosa -> #FF585D */
+.event-type-Carga_Exitosa {
+    color: var(--alert-red) !important;
+}
+
+/* Navegacion -> #FF6900 */
+.event-type-Navegación {
+    color: var(--action-orange) !important;
+}
+
+/* Eliminacion -> #EE3831 */
+.event-type-Eliminación {
+    color: var(--strong-red) !important;
+}
+
+/* Sistema -> #D1DDE6 */
+.event-type-Sistema,
+.event-type-Auditoría {
+    color: var(--light-grey-blue) !important;
+}
+
+/* Colores restantes para otros tipos de evento */
+.event-type-Importación_Actualizada {
+    color: var(--action-orange) !important;
+}
+
+.event-type-Error {
+    color: var(--strong-red) !important;
+}
+
+.event-console-container .text-muted {
+    color: var(--grey-blue) !important;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ================================================
+   Personalización para Tooltips de Bootstrap
+   ================================================ */
+.tooltip-inner {
+    text-align: left !important; /* Alinea el texto del listado de archivos a la izquierda */
+}
+
+
+/* Estilos para los encabezados del submenú */
+.submenu-header {
+    font-weight: bold;
+    color: #333; /* Un color de texto oscuro */
+    background-color: #e9ecef; /* Un fondo gris claro para separarlo */
+    padding-left: 1.5rem; /* Alineación con los íconos del menú principal */
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+/* Indentación para los elementos del submenú */
+#integradorSubmenu .submenu-item {
+    padding-left: 2.5rem !important;
+}
+
+
+/* Estilo para los elementos de primer nivel dentro de un menú desplegable */
+.submenu-item {
+    padding-left: 2.5rem !important;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Estilo para los encabezados de segundo nivel (Raíces, Maestros) */
+.submenu-header {
+    font-weight: bold;
+    color: #495057;
+}
+
+/* Estilo para los elementos de segundo nivel (los enlaces dentro de Raíces y Maestros) */
+.sub-submenu-item {
+    padding-left: 3.5rem !important; /* Mayor indentación */
+    background-color: rgba(0, 0, 0, 0.01);
+}

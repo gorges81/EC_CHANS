@@ -1,0 +1,6 @@
+/* /css/style_shopify_ph.css */
+
+/* Estilos específicos para el submódulo "Shopify PH" del integrador. */
+#gridContainer .table-responsive {
+    max-height: 70vh;
+}

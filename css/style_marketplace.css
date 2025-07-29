@@ -1,0 +1,4 @@
+/* /css/style_marketplace.css */
+#marketplacesGrid tbody tr {
+    cursor: pointer;
+}
